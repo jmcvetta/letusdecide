@@ -1,8 +1,11 @@
 package com.siliconheavy.letusdecide;
 
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
+import java.util.Vector;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -14,6 +17,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,12 +28,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+
 public class MainActivity extends FragmentActivity  implements ActionBar.TabListener {
 
-    public final static String QUANDARY = "com.siliconheavy.letusdecide.QUANDARY";
-    public final static String OPTION_ONE = "com.siliconheavy.letusdecide.ONE";
-    public final static String OPTION_TWO = "com.siliconheavy.letusdecide.TWO";
-    public final static String OPTION_THREE = "com.siliconheavy.letusdecide.THREE";
+    private final static Random randomGenerator = new Random();
+    protected final static String QUANDARY = "com.siliconheavy.letusdecide.QUANDARY";
+    protected final static String OPTION_ONE = "com.siliconheavy.letusdecide.ONE";
+    protected final static String OPTION_TWO = "com.siliconheavy.letusdecide.TWO";
+    protected final static String OPTION_THREE = "com.siliconheavy.letusdecide.THREE";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -194,6 +200,10 @@ public class MainActivity extends FragmentActivity  implements ActionBar.TabList
         }
     }
 
+    /*
+     * Given a quandary and 2 or 3 possible options, make a decision by
+     * randomly selecting one of the options.
+     */
     public void decide(View view) {
         // Intent intent = new Intent(this, MakeDecisionActivity.class);
         //
@@ -204,35 +214,49 @@ public class MainActivity extends FragmentActivity  implements ActionBar.TabList
         TextView answerLabel = (TextView) findViewById(R.id.answer_label);
         TextView answer = (TextView) findViewById(R.id.answer);
         //
-        String quandary = quandaryET.getText().toString();
-        String option1 = option1ET.getText().toString();
-        String option2 = option2ET.getText().toString();
-        String option3 = option3ET.getText().toString();
+//        String quandary = quandaryET.getText().toString();
+//        String option1 = option1ET.getText().toString();
+//        String option2 = option2ET.getText().toString();
+//        String option3 = option3ET.getText().toString();
         //
         // Sanity Checks
         //
         Boolean valid = true;
-        //
-        if (quandary.isEmpty()) {
-            valid = false;
-            quandaryET.setError("You must supply a quandary");
+        List<EditText> required = Arrays.asList(quandaryET, option1ET, option2ET);
+        for (EditText et : required) {
+            String s = et.getText().toString();
+            if (s.isEmpty()) {
+                valid = false;
+                et.setError("Required");
+            }
         }
-        //
-        if (valid) {
-            answerLabel.setVisibility(View.VISIBLE);
-            answer.setText("FOOBAR!");
+        if (!valid) {
+            return;
         }
-        //
+        List<EditText> options = new Vector<EditText>();
+        options.add(option1ET);
+        options.add(option2ET);
+        // Option 3 is not mandatory
+        if (!option3ET.getText().toString().isEmpty()) {
+            options.add(option3ET);
+        }
+        int index = randomGenerator.nextInt(options.size());
+        EditText winner = options.get(index);
+        answerLabel.setVisibility(View.VISIBLE);
+        answer.setText(winner.getText().toString());
     }
+
 
     /*
      * Reset the "Make a decision!" form.
      */
     public void reset(View view) {
-        List<Integer> fieldIDs = Arrays.asList(R.id.quandary, R.id.option2, R.id.option3, R.id.answer);
+        List<Integer> fieldIDs = Arrays.asList(R.id.quandary, R.id.option1, R.id.option2,
+                R.id.option3, R.id.answer);
         for (int id : fieldIDs) {
             TextView et = (TextView) findViewById(id);
             et.setText("");
+            et.setError(null);
         }
         TextView answerLabel = (TextView) findViewById(R.id.answer_label);
         answerLabel.setVisibility(View.INVISIBLE);

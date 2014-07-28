@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Random;
 
 
 /**
@@ -30,6 +31,13 @@ public class DecideFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+
+    private final static Random randomGenerator = new Random();
+    protected final static String QUANDARY = "com.siliconheavy.letusdecide.QUANDARY";
+    protected final static String OPTION_ONE = "com.siliconheavy.letusdecide.ONE";
+    protected final static String OPTION_TWO = "com.siliconheavy.letusdecide.TWO";
+    protected final static String OPTION_THREE = "com.siliconheavy.letusdecide.THREE";
 
     /**
      * Use this factory method to create a new instance of
