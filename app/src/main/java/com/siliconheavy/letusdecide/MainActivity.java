@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -17,10 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class MainActivity extends FragmentActivity  implements ActionBar.TabListener {
+
+    public final static String QUANDARY = "com.siliconheavy.letusdecide.QUANDARY";
+    public final static String OPTION_ONE = "com.siliconheavy.letusdecide.ONE";
+    public final static String OPTION_TWO = "com.siliconheavy.letusdecide.TWO";
+    public final static String OPTION_THREE = "com.siliconheavy.letusdecide.THREE";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -183,6 +190,27 @@ public class MainActivity extends FragmentActivity  implements ActionBar.TabList
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+    }
+
+    public void decide(View view) {
+        Intent intent = new Intent(this, MakeDecisionActivity.class);
+        //
+        EditText quandaryET = (EditText) findViewById(R.id.quandary);
+        String quandary = quandaryET.getText().toString();
+        //
+        EditText option1ET = (EditText) findViewById(R.id.option1);
+        String option1 = option1ET.getText().toString();
+        //
+        EditText option2ET = (EditText) findViewById(R.id.option2);
+        String option2 = option2ET.getText().toString();
+        //
+        EditText option3ET = (EditText) findViewById(R.id.option3);
+        String option3 = option3ET.getText().toString();
+        //
+        TextView answerLabel = (TextView) findViewById(R.id.answer_label);
+        answerLabel.setVisibility(View.VISIBLE);
+        //
+
     }
 
 }
