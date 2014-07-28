@@ -1,5 +1,7 @@
 package com.siliconheavy.letusdecide;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -193,24 +195,47 @@ public class MainActivity extends FragmentActivity  implements ActionBar.TabList
     }
 
     public void decide(View view) {
-        Intent intent = new Intent(this, MakeDecisionActivity.class);
+        // Intent intent = new Intent(this, MakeDecisionActivity.class);
         //
         EditText quandaryET = (EditText) findViewById(R.id.quandary);
-        String quandary = quandaryET.getText().toString();
-        //
         EditText option1ET = (EditText) findViewById(R.id.option1);
-        String option1 = option1ET.getText().toString();
-        //
         EditText option2ET = (EditText) findViewById(R.id.option2);
-        String option2 = option2ET.getText().toString();
-        //
         EditText option3ET = (EditText) findViewById(R.id.option3);
+        TextView answerLabel = (TextView) findViewById(R.id.answer_label);
+        TextView answer = (TextView) findViewById(R.id.answer);
+        //
+        String quandary = quandaryET.getText().toString();
+        String option1 = option1ET.getText().toString();
+        String option2 = option2ET.getText().toString();
         String option3 = option3ET.getText().toString();
         //
-        TextView answerLabel = (TextView) findViewById(R.id.answer_label);
-        answerLabel.setVisibility(View.VISIBLE);
+        // Sanity Checks
         //
+        Boolean valid = true;
+        //
+        if (quandary.isEmpty()) {
+            valid = false;
+            quandaryET.setError("You must supply a quandary");
+        }
+        //
+        if (valid) {
+            answerLabel.setVisibility(View.VISIBLE);
+            answer.setText("FOOBAR!");
+        }
+        //
+    }
 
+    /*
+     * Reset the "Make a decision!" form.
+     */
+    public void reset(View view) {
+        List<Integer> fieldIDs = Arrays.asList(R.id.quandary, R.id.option2, R.id.option3, R.id.answer);
+        for (int id : fieldIDs) {
+            TextView et = (TextView) findViewById(id);
+            et.setText("");
+        }
+        TextView answerLabel = (TextView) findViewById(R.id.answer_label);
+        answerLabel.setVisibility(View.INVISIBLE);
     }
 
 }

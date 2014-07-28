@@ -94,19 +94,12 @@
             android:hint="Sushi" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin">
-
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <Button
             android:layout_width="wrap_content"
@@ -118,21 +111,22 @@
             android:clickable="true"
             android:textAlignment="center"
             android:enabled="true"
-            android:paddingBottom="@dimen/activity_vertical_margin"
             android:textSize="32sp"
             android:onClick="decide"
             android:layout_alignParentEnd="true"
-            android:padding="@dimen/activity_horizontal_margin" />
+            android:padding="@dimen/activity_horizontal_margin"
+            android:background="#ff32dc1c" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear"
+            android:text="Reset"
             android:id="@+id/button_reset"
             android:padding="@dimen/activity_horizontal_margin"
             android:textSize="32sp"
             android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="false" />
+            android:layout_alignParentEnd="false"
+            android:onClick="reset" />
     </RelativeLayout>
 
     <TextView
