@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Let Us Decide</string>
-    <string name="title_section1">Make a Decision!</string>
-    <string name="title_section2">Past Decisions</string>
+    <string name="title_make_a_decision">Make a Decision!</string>
+    <string name="title_past_decisions">Past Decisions</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
