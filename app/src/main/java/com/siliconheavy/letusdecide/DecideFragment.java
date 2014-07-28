@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Decide.OnFragmentInteractionListener} interface
+ * {@link DecideFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Decide#newInstance} factory method to
+ * Use the {@link DecideFragment#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class Decide extends Fragment {
+public class DecideFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,18 +37,18 @@ public class Decide extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Decide.
+     * @return A new instance of fragment DecideFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Decide newInstance(String param1, String param2) {
-        Decide fragment = new Decide();
+    public static DecideFragment newInstance(String param1, String param2) {
+        DecideFragment fragment = new DecideFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-    public Decide() {
+    public DecideFragment() {
         // Required empty public constructor
     }
 
@@ -75,16 +75,16 @@ public class Decide extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        try {
+//            mListener = (OnFragmentInteractionListener) activity;
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException(activity.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
 
     @Override
     public void onDetach() {

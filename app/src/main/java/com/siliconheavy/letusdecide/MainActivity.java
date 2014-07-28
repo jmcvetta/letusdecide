@@ -90,13 +90,19 @@ public class MainActivity extends Activity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             // return PlaceholderFragment.newInstance(position + 1);
-            return PastDecisionFragment.newInstance("foo", "bar");
+            switch (position) {
+                case 0:
+                    return DecideFragment.newInstance("foo", "bar");
+                case 1:
+                    return PastDecisionFragment.newInstance("foo", "bar");
+            }
+            return null;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Total 2 pages.
+            return 2;
         }
 
         @Override
@@ -107,8 +113,6 @@ public class MainActivity extends Activity {
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
         }
