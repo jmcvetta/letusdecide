@@ -115,7 +115,7 @@
             android:onClick="decide"
             android:layout_alignParentEnd="true"
             android:padding="@dimen/activity_horizontal_margin"
-            android:background="#ff32dc1c" />
+            android:background="@drawable/custom_button" />
 
         <Button
             android:layout_width="wrap_content"
