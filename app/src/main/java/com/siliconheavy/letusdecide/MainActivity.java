@@ -12,7 +12,9 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -52,15 +54,30 @@ public class MainActivity extends FragmentActivity  implements ActionBar.TabList
      */
     ViewPager mViewPager;
 
+    // SharedPreferences mContext;
+    private static final String PREF_NAME = "LetUsDecidePrefs";
+    private static final String USER_ID = "UserID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Context context = getApplicationContext();
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, 0); // 0 - for private mode
+        // SharedPreferences.Editor editor = pref.edit();
+        String userId = prefs.getString(USER_ID, "");
+        if (userId == "") {
+            Intent i = new Intent(context, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         setContentView(R.layout.activity_main);
 
+        // Configure the ActionBar for tab navigation
         final ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
